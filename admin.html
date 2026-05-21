@@ -438,7 +438,7 @@ async function loadData() {
     })).filter(m => m.id);
     // pending: [code,name,kana,tel,birth,note,time]
     pending = (data.pending || []).slice(1).map(r => ({
-      code: String(r[0]), name: r[1], kana: r[2], tel: String(r[3]||''), birth: String(r[4]||''), note: r[5], time: r[6], email: r[7] || ''
+      code: String(r[0]), name: r[1], kana: r[2], tel: String(r[3]||''), birth: String(r[4]||''), note: r[5], time: r[6], email: String(r[7]||'')
     })).filter(p => p.code);
     // notifs: [id,title,body,sent]
     notifs = (data.notifs || []).slice(1).map(r => ({
