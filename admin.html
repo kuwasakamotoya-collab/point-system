@@ -473,7 +473,7 @@ function showSection(name) {
   if (name === 'personal')   { renderPersonalMemberList(); renderPersonalSendList(); }
   if (name === 'notify')    renderNotifHistory();
 
-  if (name === 'import')    { renderPendingList(); clearCode(); }
+  if (name === 'import')    { loadData().then(() => { renderPendingList(); clearCode(); }); }
   if (name === 'regqr')     buildRegQR();
   if (name === 'point')     showAllMembers();
 }
