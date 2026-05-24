@@ -467,7 +467,7 @@ function showSection(name) {
   document.getElementById('sec-' + name).classList.add('active');
   document.querySelector(`[data-sec="${name}"]`).classList.add('active');
   if (name === 'dashboard') renderDashboard();
-  if (name === 'members')   renderMemberTable();
+  if (name === 'members')   loadData().then(() => renderMemberTable());
   if (name === 'qr')        renderQRAll();
   if (name === 'log')       renderLog();
   if (name === 'personal')   { renderPersonalMemberList(); renderPersonalSendList(); }
