@@ -572,11 +572,11 @@ async function approveCode() {
     await apiPost({ action: 'addMember', id, name: entry.name, kana: entry.kana, tel: entry.tel, birth: entry.birth, note: entry.note, email: entry.email||'', created });
     await apiPost({ action: 'approvePending', code: currentPendingCode });
     await apiPost({ action: 'addLog', type: 'reg', text: `登録承認: ${entry.name}（${id}）コード:${currentPendingCode}`, time: new Date().toLocaleString('ja-JP') });
-    members.push({ id, name: entry.name, kana: entry.kana, tel: entry.tel, birth: entry.birth, note: entry.note, points: 0, created });
     pending = pending.filter(p => p.code !== currentPendingCode);
     currentPendingCode = null;
     clearCode();
-    updateHeaderCount();
+    // スプレッドシートから最新データを取得して会員一覧を更新
+    await loadData();
     updatePendingBadge();
     renderPendingList();
     toast(`✅ ${entry.name} さんを会員登録しました（ID: ${id}）`, 'ok');
